@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Adres API - Changelog</title>
+  <meta name="description" content="Türkiye il, ilçe, mahalle, köy, belde JSON verileri. API komutları ve sorgulama sistemi.">
+  <meta name="keywords" content="adres, api, il, ilçe, mahalle, köy, belde, json">
+  <meta name="author" content="ckoglu">
+  <link rel="stylesheet" href="../css/loading.css" />
+  <script src="../js/redirect/noflash.js" defer></script>
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f5fa.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f5fa.svg" type="image/x-icon">
+  <meta name="theme-color" content="#0369a1" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)">
+  <link rel="preload" href="../css/style.css" as="style">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/icons.css" />
+  <link rel="stylesheet" href="../css/commit.css" />
+  <script src="../js/redirect/sidebar.js" defer></script>
+</head>
+<body>
+  <div class="header">
+    <div class="header-top"><div id="verifyMail"></div></div>
+    <div class="header-bottom">
+      <div class="header-logo">
+        <a id="menuToggle" class="icon menu-mobil-btn" data-alt-title="menü göster/gizle"><i class="sidebar-left"></i></a>
+        <a href="../"><h2 class="header-logo-text"><span class="capitalize">Adres</span> <span class="uppercase">API</span></h2></a>
+      </div>
+      <div class="dropdown" id="mainDropdown">
+        <div id="authButtons"></div>
+        <div id="showUserInfo"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Sidebar - Tam boy -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-menu">
+      <div class="menu-list">
+        <a href="../" class="sidebar-item" data-sag-title="ana sayfa">
+          <div class="icon"><i class="home"></i></div>
+          <span class="text">Ana Sayfa</span>
+        </a>
+        <a href="../?cmd=info" class="sidebar-item" data-sag-title="hakkında">
+          <div class="icon"><i class="info"></i></div>
+          <span class="text">Hakkında</span>
+        </a>
+        <a href="../changelog/" class="sidebar-item" data-sag-title="changelog">
+          <div class="icon"><i class="details-more"></i></div>
+          <span class="text">Changelog</span>
+        </a>
+      </div>
+      <div id="history-cmd" class="hidden"></div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent" class="main-content">
+      <!-- Ana İçerik -->
+      <main class="container">
+        <div id="about-me-container">
+            <div class="about-me">
+                <div class="about-avatar"><a href="https://github.com/ckoglu" target="_blank"><img src="https://github.com/ckoglu.png" alt="ckoglu GitHub Avatarı"></a></div>
+                <div class="about-info">
+                    <h3 class="fw6 h:underline"><a href="https://github.com/ckoglu" target="_blank">ckoglu</a></h3>
+                    <p>Web geliştirici. PHP, JavaScript, veri işleme ve video sistemleri üzerine çalışıyorum. Açık kaynak projelerimi GitHub üzerinde yayınlıyorum.</p>
+                    
+                    <div class="flex row center">
+                            <a href="https://github.com/ckoglu" target="_blank" id="github-button" class="btn" data-sag-title="GitHub profilime git">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52 -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78 -.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 012-.27 7.5 7.5 0 012 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.001 8.001 0 008 0z"></path></svg>
+                            </a>
+                    </div>
+                </div> 
+            </div>
+            <div class="commit-list">
+                <h3 id="me-durum-info" data-ust-title="">en yeni commit'ler</h3>
+                <div id="commits" class="commits"><div>yükleniyor...</div></div>
+            </div>
+        </div>
+      </main>
+  </div>
+
+  <!-- Uyarı -->
+  <div id="alert" class="alert">
+    <div id="alertIcon"></div>
+    <div id="alertMessage"></div>
+  </div>
+  
+  <!-- JS Modül Girişi -->
+  <script type="module" src="../js/changelog.js"></script>
+</body>
+</html>
