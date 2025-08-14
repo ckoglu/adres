@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
           await userModul.register(email, password);
           showError('kayıt başarılı! lütfen e-posta adresinizi, gelen kutusundan (spam) linke tıklayarak doğrulayın.');
-          setTimeout(() => {window.location.href = `${url.site}${url.repository}login.html`;}, 3000);
+          setTimeout(() => {window.location.href = `${url.site}${url.repository}login/`;}, 3000);
         } catch (error) {
           showError(error.message);
         }
