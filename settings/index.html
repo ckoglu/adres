@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Adres API - Ayarlar</title>
+  <meta name="description" content="Türkiye il, ilçe, mahalle, köy, belde JSON verileri. API komutları ve sorgulama sistemi.">
+  <meta name="keywords" content="adres, api, il, ilçe, mahalle, köy, belde, json">
+  <meta name="author" content="ckoglu">
+  <link rel="stylesheet" href="../css/loading.css" />
+  <script src="../js/redirect/noflash.js" defer></script>
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f5fa.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f5fa.svg" type="image/x-icon">
+  <meta name="theme-color" content="#0369a1" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)">
+  <link rel="preload" href="../css/style.css" as="style">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/icons.css" />
+  <link rel="stylesheet" href="../css/settings.css" />
+  <script src="../js/redirect/sidebar.js" defer></script>
+</head>
+<body>
+  <script src="../js/redirect/settingsRedirect.js" defer></script>
+  <div class="header">
+    <div class="header-top"><div id="verifyMail"></div></div>
+    <div class="header-bottom">
+      <div class="header-logo">
+        <a id="menuToggle" class="icon menu-mobil-btn" data-alt-title="menü göster/gizle"><i class="sidebar-left"></i></a>
+        <a href="../"><h2 class="header-logo-text"><span class="capitalize">Adres</span> <span class="uppercase">API</span></h2></a>
+      </div>
+      <div class="dropdown" id="mainDropdown">
+        <div id="authButtons"></div>
+        <div id="showUserInfo"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Sidebar - Tam boy -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-menu">
+      <div class="menu-list">
+        <a href="../" class="sidebar-item" data-sag-title="ana sayfa">
+          <div class="icon"><i class="home"></i></div>
+          <span class="text">Ana Sayfa</span>
+        </a>
+        <a href="../?cmd=info" class="sidebar-item" data-sag-title="hakkında">
+          <div class="icon"><i class="info"></i></div>
+          <span class="text">Hakkında</span>
+        </a>
+        <a href="../changelog/" class="sidebar-item" data-sag-title="changelog">
+          <div class="icon"><i class="details-more"></i></div>
+          <span class="text">Changelog</span>
+        </a>
+      </div>
+      <div id="history-cmd" class="hidden"></div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent" class="main-content">
+
+    <h2>Hesap Ayarları</h2>
+
+    <div class="auth-me settings-section">
+        <div class="auth-info">
+            <div class="auth-top">
+              <h2 id="authName"></h2>
+              <span id="authVerify"></span>
+            </div>
+            <div id="currentUserInfo"></div>
+        </div> 
+    </div>
+
+    <section class="settings-section">
+      <h4>🔑 Key: <span id="settings-key"></span></h4>
+      <div class="set-options">
+        <button id="settings-key-btn" class="set-option blue-button" data-cmd="">kopyala</button>
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h4>🔒 şifremi yenile</h4>
+      <form id="resetForm">
+        <div class="set-options"><button class="set-option blue-button" type="submit">gönder</button></div>
+      </form>
+    </section>
+
+    <section class="settings-section">
+      <h4>✏️ cmd kutusu</h4>
+      <div class="set-options">
+        <button id="prefixToggleBtn" class="set-option" onclick="toggleLoc('set', 'prefix', [true, false], ['önek göster', 'önek gizle'])"></button>
+        <button id="cmdListToggleBtn" class="set-option" onclick="toggleLoc('set', 'cmdList', [false, true, 'text'], ['cmd liste kapat', 'cmd liste aç', 'cmd liste yazınca göster'])"></button>
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <h4>✨ Tema Seçin</h4>
+      <select id="themeSelect" class="theme-select">
+        <option value="light">☀️ Açık</option>
+        <option value="dark">🌙 Koyu</option>
+        <option value="auto">🔄 Otomatik</option>
+        <option value="system">💻 Sistem</option>
+        <option value="pastel">🎨 Pastel</option>
+        <option value="dracula">🧛 Dracula</option>
+        <option value="sepia">📜 Sepya</option>
+        <option value="ice">❄️ Buz</option>
+        <option value="forest">🌲 Orman</option>
+        <option value="solarized-light">🔆 Gün Işığı</option>
+        <option value="midnight">🌌 Gece Mavisi</option>
+        <option value="retro-green">🟢 Retro Yeşil</option>
+        <option value="sunset">🌇 Gün Batımı</option>
+        <option value="cyberpunk">🤖 Cyberpunk</option>
+        <option value="ocean-deep">🌊 Derin Deniz</option>
+        <option value="neon-night">💡 Neon Gece</option>
+        <option value="galactic-purple">🌌 Kozmik Mor</option>
+        <option value="cyber-neon">🔮 Siber Neon</option>
+        <option value="mystic-forest">🧙 Büyülü Orman</option>
+        <option value="candy-pop">🍬 Şeker Patlaması</option>
+        <option value="obsidian-dark">⚫ Obsidyen</option>
+        <option value="sunrise-glow">🌅 Şafak Işığı</option>
+        <option value="deep-space">🚀 Derin Uzay</option>
+        <option value="cotton-candy">🍭 Pamuk Şeker</option>
+        <option value="midnight-gold">🌟 Gece Altını</option>
+        <option value="electric-violet">⚡ Elektrik Moru</option>
+      </select>
+    </section>
+
+    <section class="settings-section">
+      <h4>📜 Geçmiş Ayarları</h4>
+      <div class="set-options">
+        <button id="hsclear" class="set-option delete" onclick="deleteLoc('history')">tümünü sil</button>
+        <button id="hsclose" class="set-option blue-button">geçmişi kapat</button>
+        <button id="hscc" class="set-option blue-button" onclick="document.getElementById('hsclose').click(); deleteLoc('history');">sil/kapat</button>
+        <button id="hsimport" class="set-option blue-button">içe aktar</button>
+        <button id="hsexport" class="set-option blue-button">dışa aktar</button>
+      </div>
+    </section>
+
+    <a href="../deleteauth/" class="set-option delete-auth">hesabımı sil</a>
+
+  </div>
+
+  <!-- Uyarı -->
+  <div id="alert" class="alert">
+    <div id="alertIcon"></div>
+    <div id="alertMessage"></div>
+  </div>
+  
+  <!-- JS Modül Girişi -->
+  <script type="module" src="../js/settings.js"></script>
+</body>
+</html>
