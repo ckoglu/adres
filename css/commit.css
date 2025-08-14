@@ -1,0 +1,20 @@
+/* GIRIS YAP */
+.about-me{display:flex;flex-direction:row;gap:30px}
+.about-avatar img{width:140px;height:140px;border-radius:20px;border:4px solid var(--blue);box-shadow:0 0 10px rgba(0,0,0,.2)}
+.about-info .auth-top{margin:0;font-size:24px;color:var(--text-clr)}
+.about-info p{margin-top:10px;font-size:16px;color:var(--heading-primary-clr)}
+.commits{width:100%;max-width:800px;margin:5px auto;font-family:Roboto,sans-serif}
+.commit-list{display:flex;flex-direction:column;gap:10px}
+.commit-list h3{font-size:20px;color:var(--text-clr);text-align:center;font-weight:700;margin-top:15px;}
+.commit-list h3 code{font-size:14px;color:var(--gray-dark);margin-top:6px;display:block}
+.changelog-day{margin-bottom: 30px;padding: 22px 12px;position: relative;}
+.changelog-day h4{font-size:17px;font-weight:700;color:var(--primary);margin-bottom:12px;border-bottom:1px solid var(--border-clr);padding-bottom: 12px;}
+.changelog-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+.changelog-entry{position:relative;}
+.entry-header{display:flex;justify-content:space-between;align-items:flex-start}
+.entry-title{font-size:16px;font-weight:600;color:var(--text-clr);margin:0}
+.entry-time{font-size:13px;color:var(--l7dark);white-space:nowrap}
+.entry-description{font-size:17px;color:var(--text-secondary-clr);margin-top:6px;padding-left: 15px;border-left: 1px solid var(--blue);}
+.entry-description p {margin: 0;}
+@media (max-width:768px){.commits::before {display: none;}
+}

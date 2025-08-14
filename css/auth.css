@@ -1,0 +1,25 @@
+/* GIRIS YAP */
+.login-container{display:flex;min-height:90vh;background-color:var(--primary-clr);transition:all .3s ease}
+.login-content{width:100%;max-width:450px;margin:auto;padding:2rem;background-color:var(--primary-clr);border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.095);position:relative}
+.back-button{position:absolute;top:1.5rem;left:1.5rem;background:0 0;border:none;color:var(--blue);font-size:17px;cursor:pointer;display:flex;align-items:center;gap:.5rem;transition:background-color .2s ease;width: fit-content;}
+.back-button:hover{text-decoration: underline;}
+.back-button svg{width:18px;height:18px;fill:currentColor}
+.login-header{text-align:center;margin-bottom:1.5rem}
+.login-header h1{font-size:2rem;font-weight:700;margin-bottom:.5rem;color:var(--text-clr)}
+.login-form .form-group{margin-bottom:1.5rem}
+.login-form label{display:block;margin-bottom:.5rem;color:var(--text-clr);font-weight:500}
+.login-form input{width:100%;padding:.8rem 1rem;border:1px solid var(--border-clr);border-radius:9px;background-color:var(--secondary-clr);color:var(--text-clr);font-size:1rem;transition:all .3s ease}
+.login-form input:focus{border-color:var(--blue);background-color:var(--focus-clr);outline:0}
+.login-form input::placeholder{color:var(--placeholder)}
+.login-actions{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem}
+.login-btn{width:100%;padding:.9rem;background-color:var(--blue);color:#fff;border:none;border-radius:8px;font-size:16px;cursor:pointer;transition:background-color .3s ease}
+.login-btn:hover{background-color:var(--blue-hover);}
+.delete-btn{width:100%;padding:.9rem;background-color:var(--red);color:#fff;border:none;border-radius:8px;font-size:16px;cursor:pointer;transition:background-color .3s ease}
+.delete-btn:hover{background-color:var(--red-hover);}
+.login-footer{text-align:center;margin-top:1rem;color:var(--text-secondary-clr);font-size:.9rem}
+.login-footer a{color:var(--blue);text-decoration:none;font-weight:500}
+.login-footer a:hover{text-decoration:underline}
+.forgot-password{color:var(--blue);text-decoration:none;font-size:.9rem;display:flex;justify-content:end;width:100%;margin-bottom:4px}
+.forgot-password:hover{text-decoration:underline}
+.error-message {border: 1px solid #ce4a4a5c;border-radius: 9px;margin-top: 15px;padding: 10px;color: var(--red);background: #ce4a4a1a;}
+.error-message-bottom {margin-bottom:15px;font-size: 14px;}
