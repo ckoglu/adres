@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Adres API - Hesap Sil</title>
+  <meta name="description" content="Hesap silmeden önce kimlik doğrulama.">
+  <meta name="author" content="ckoglu">
+  <link rel="stylesheet" href="../css/loading.css" />
+  <script src="../js/redirect/noflash.js" defer></script>
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f5fa.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/icons.css"/>
+  <link rel="stylesheet" href="../css/auth.css"/>
+</head>
+<body>
+  <button class="back-button icon" data-alt-title="önceki sayfaya dön" onclick="window.history.back()"><i class="arrow-left"></i> Geri Dön</button>
+  <div class="login-container">
+    <div class="login-content">
+      <div class="login-header">
+        <h1>Hesabımı Sil</h1>
+      </div>
+      <div class="error-message error-message-bottom">Bu işlem geri alınamaz. Hesabınız kalıcı olarak silinecektir!</div>
+      <form id="deleteForm" class="login-form">
+        <input type="password" class="form-group" name="password" placeholder="şifrenizi girin" required />
+        <button type="submit" class="delete-btn">Hesabımı Sil</button>
+        <div id="deleteMessage"></div>
+      </form>
+    </div>
+  </div>
+  <script type="module" src="../js/deleteauth.js"></script>
+</body>
+</html>
