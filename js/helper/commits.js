@@ -15,16 +15,17 @@ function getCurrentUID() {
 export async function meMode() {
   const user = 'ckoglu';
   const pathname = location.pathname.split('/').filter(Boolean);
-  const repo = pathname.length > 0 ? `/${pathname[0]}/` : '/';
+  const repoName = pathname.length > 0 ? pathname[0] : '';
+  const repo = `${user}/${repoName}`; 
+
   const ul = document.getElementById('commits');
   const status = document.getElementById('me-durum-info');
 
-  const uid = getCurrentUID(); 
+  const uid = getCurrentUID();
   const setKey = `set-${uid}`;
-
   const today = new Date().toISOString().split('T')[0];
-  let setData = JSON.parse(localStorage.getItem(setKey) || "null");
 
+  let setData = JSON.parse(localStorage.getItem(setKey) || "null");
   if (!setData) {
     setData = { lastCommit: today };
     localStorage.setItem(setKey, JSON.stringify(setData));
@@ -33,12 +34,14 @@ export async function meMode() {
   const lastCommit = setData?.lastCommit || null;
   const cachedCommits = localStorage.getItem('cachedCommits');
 
-  // Eğer cache bugünküse direkt kullan
   if (lastCommit === today && cachedCommits) {
-    const commits = JSON.parse(cachedCommits);
-    renderCommits(commits, ul);
-    if (status) status.setAttribute('data-ust-title', 'localStorage');
-    return;
+    try {
+      renderCommits(JSON.parse(cachedCommits), ul);
+      if (status) status.setAttribute('data-ust-title', 'localStorage');
+      return;
+    } catch (e) {
+      console.error("Cache parse hatası:", e);
+    }
   }
 
   const now = new Date();
@@ -47,31 +50,36 @@ export async function meMode() {
   past.setDate(now.getDate() - 90);
   const since = past.toISOString();
 
-  const baseUrl = `https://api.github.com/repos/${user}/${repo}/commits?author=${user}&since=${since}&until=${until}&per_page=100`;
+  const baseUrl = `https://api.github.com/repos/${repo}/commits?author=${user}&since=${since}&until=${until}&per_page=100`;
   const proxyUrl = `https://script.google.com/macros/s/AKfycbw_MYcInMCCYiQZNzeaZAp7Upl_UwNZS2O1rlx1bDBwBT7UFJJPEpvNSSmbkCgWXATk/exec?site=${encodeURIComponent(baseUrl)}`;
 
   try {
     const res = await fetch(proxyUrl);
-    const data = await res.json();
+    
+    if (!res.ok) {
+      const errorBody = await res.text();
+      throw new Error(`HTTP ${res.status} — ${errorBody}`);
+    }
+
+    const raw = await res.text();
+
+    let data;
+    try {
+      data = JSON.parse(raw);
+    } catch {
+      throw new Error(`JSON parse hatası. Gelen veri: ${raw}`);
+    }
 
     if (!Array.isArray(data)) {
-      console.warn('API beklenen formatta değil, cache verisi kullanılacak.');
-      if (cachedCommits) {
-        const commits = JSON.parse(cachedCommits);
-        renderCommits(commits, ul);
-        if (status) status.setAttribute('data-ust-title', 'localStorage (API hatası)');
-        return;
-      } else {
-        throw new Error('API geçersiz veri döndürdü ve local cache yok.');
-      }
+      throw new Error("Beklenen format array değil.");
     }
 
     const commits = data
-      .map((c) => {
+      .map(c => {
         const [title, ...rest] = c.commit.message.split('\n');
         return {
           date: new Date(c.commit.author.date),
-          title: title,
+          title,
           description: rest.join('</p><p>') || '',
         };
       })
@@ -85,20 +93,24 @@ export async function meMode() {
     if (status) status.setAttribute('data-ust-title', 'API');
 
   } catch (err) {
-    console.error(err);
+    console.error("Hata:", err.message);
+
     if (cachedCommits) {
-      const commits = JSON.parse(cachedCommits);
-      renderCommits(commits, ul);
-      if (status) status.setAttribute('data-ust-title', 'localStorage (fetch hatası)');
-      showAlert(`API'den veri alınamadı, cache kullanıldı.`, 'warning');
+      try {
+        renderCommits(JSON.parse(cachedCommits), ul);
+        if (status) status.setAttribute('data-ust-title', 'localStorage (hata sonrası)');
+        showAlert(`API hatası: ${err.message} — Cache kullanıldı.`, 'warning');
+      } catch (parseErr) {
+        console.error("Cache parse hatası:", parseErr);
+        ul.innerHTML = `<div>Cache verisi bozuk.</div>`;
+        showAlert(`Cache verisi bozuk: ${parseErr.message}`, 'danger');
+      }
     } else {
       ul.innerHTML = `<div>Veri alınamadı ve cache yok.</div>`;
       showAlert(`Veri alınamadı: ${err.message}`, 'danger');
     }
   }
 }
-
-
 // Yardımcı fonksiyon: Commits listele
 export function renderCommits(commits, container) {
   if (!container) return;
