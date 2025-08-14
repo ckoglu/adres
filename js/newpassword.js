@@ -35,7 +35,7 @@ if (!oobCode) {
           successDiv.textContent = "Şifreniz başarıyla değiştirildi. Giriş sayfasına yönlendiriliyorsunuz...";
           successDiv.style.display = "block";
           errorDiv.style.display = "none";
-          setTimeout(() => window.location.href = "login.html", 3000);
+          setTimeout(() => window.location.href = `${url.site}${url.repository}login/`, 3000);
         } catch (error) {
           errorDiv.textContent = "şifre güncellenemedi: " + error.message;
           errorDiv.style.display = "block";
@@ -50,4 +50,5 @@ if (!oobCode) {
 }
 
   document.documentElement.style.setProperty("--before-display", "none");
+
   document.body.style.visibility = "visible"; 
