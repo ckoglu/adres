@@ -48,7 +48,7 @@ export async function meMode() {
   const since = past.toISOString();
 
   const baseUrl = `https://api.github.com/repos/${user}/${repo}/commits?author=${user}&since=${since}&until=${until}&per_page=100`;
-  const proxyUrl = `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(baseUrl)}`;
+  const proxyUrl = `https://script.google.com/macros/s/AKfycbw_MYcInMCCYiQZNzeaZAp7Upl_UwNZS2O1rlx1bDBwBT7UFJJPEpvNSSmbkCgWXATk/exec?site=${encodeURIComponent(baseUrl)}`;
 
   try {
     const res = await fetch(proxyUrl);
