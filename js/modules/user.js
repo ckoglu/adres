@@ -257,7 +257,7 @@ export async function resetPassword(email) {
     if (!auth) await initFirebase();
     const url = await getURL();
     const { sendPasswordResetEmail } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
-    await sendPasswordResetEmail(auth, email, {url: `${url.site}${url.repository}login.html`, handleCodeInApp: true});
+    await sendPasswordResetEmail(auth, email, {url: `${url.site}${url.repository}login/`, handleCodeInApp: true});
     return "e-posta adresi sistemde kayıtlıysa, şifre sıfırlama bağlantısı gönderildi.";
   } catch (error) {
     throw handleAuthError(error);
