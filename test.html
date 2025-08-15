@@ -2,29 +2,19 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>JSONP Callback Test</title>
+  <title>JSONP Test</title>
 </head>
 <body>
-  <h1>JSONP Callback Test</h1>
+  <h1>JSONP Test</h1>
+  <pre id="output"></pre>
 
   <script>
-    // Callback fonksiyonu
+    // JSONP callback fonksiyonu
     function myCallback(data) {
-      console.log("Callback verisi:", data);
-      document.body.insertAdjacentHTML('beforeend', 
-        `<pre>${JSON.stringify(data, null, 2)}</pre>`);
+      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
     }
-
-    // JSONP isteği yap
-    function makeJsonpRequest() {
-      const script = document.createElement('script');
-      const cmd = encodeURIComponent('il=adana&ilce=ÇUKUROVA&mahalle=BEYAZEVLER&sokak=80028');
-      script.src = `callback.js?callback=myCallback&cmd=${cmd}`;
-      document.body.appendChild(script);
-    }
-
-    // Sayfa yüklendiğinde isteği yap
-    window.onload = makeJsonpRequest;
   </script>
+
+  <script src="callback.js?cmd=il=adana&ilce=ÇUKUROVA&mahalle=BEYAZEVLER&sokak=80028&callback=myCallback"></script>
 </body>
 </html>
