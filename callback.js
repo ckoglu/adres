@@ -1,96 +1,62 @@
-(async function() {
-  // URL parametrelerini al
-  const params = new URLSearchParams(window.location.search);
-  const il = params.get('il') || '';
-  const ilce = params.get('ilce') || '';
-  const mahalle = params.get('mahalle') || '';
-  const sokak = params.get('sokak') || '';
-  const callbackName = params.get('callback');
+(function() {
+  // URL parametrelerini oku
+  const urlParams = new URLSearchParams(window.location.search);
+  const callbackName = urlParams.get('callback') || 'callback';
+  const il = urlParams.get('il');
+  const ilce = urlParams.get('ilce');
+  const mahalle = urlParams.get('mahalle');
+  const sokak = urlParams.get('sokak');
 
-  if (!callbackName || typeof window[callbackName] !== 'function') {
-    console.error('Callback fonksiyonu bulunamadı:', callbackName);
-    return;
-  }
-
-  // CSV dosya URL'leri
+  // CSV verilerinin GitHub URL'leri
   const CSV_URLS = {
     il: 'https://raw.githubusercontent.com/ckoglu/csv-tr-api/refs/heads/main/il.csv',
     ilce: 'https://raw.githubusercontent.com/ckoglu/csv-tr-api/refs/heads/main/ilce.csv',
-    koy: 'https://raw.githubusercontent.com/ckoglu/csv-tr-api/refs/heads/main/koy.csv',
     mahalle: 'https://raw.githubusercontent.com/ckoglu/csv-tr-api/refs/heads/main/mahalle.csv',
+    // Sokak verisi parçalı, mahalle koduna göre
+    sokak: (mahalleKod) => `https://raw.githubusercontent.com/ckoglu/csv-tr-api/main/sokak/sokak${mahalleKod}.csv`
   };
 
   // CSV parse fonksiyonu
   function parseCsv(csvText) {
-    const lines = csvText.split('\n').filter(l => l.trim() !== '');
-    if (!lines.length) return [];
+    const lines = csvText.split('\n').filter(line => line.trim() !== '');
+    if (lines.length < 1) return [];
     const headers = lines[0].split(';').map(h => h.trim().toLowerCase());
     return lines.slice(1).map(line => {
       const values = line.split(';');
       const obj = {};
-      headers.forEach((h, i) => obj[h] = values[i] ? values[i].trim() : '');
+      headers.forEach((header, i) => {
+        obj[header] = values[i] ? values[i].trim() : '';
+      });
       return obj;
     });
   }
 
-  // CSV yükleme
-  async function loadCsv(type) {
+  // Fetch ve callback
+  async function loadData() {
     try {
-      const res = await fetch(CSV_URLS[type]);
-      const text = await res.text();
-      return parseCsv(text);
-    } catch (err) {
-      console.error(type + ' yüklenemedi:', err);
-      return [];
+      const ilData = parseCsv(await (await fetch(CSV_URLS.il)).text());
+      const ilceData = parseCsv(await (await fetch(CSV_URLS.ilce)).text());
+      const mahalleData = parseCsv(await (await fetch(CSV_URLS.mahalle)).text());
+
+      // Sokak verisi (örnek: mahalle koduna göre 1. dosya)
+      const sokakData = parseCsv(await (await fetch(CSV_URLS.sokak(1))).text());
+
+      const data = {
+        il, ilce, mahalle, sokak,
+        ilData, ilceData, mahalleData, sokakData,
+        mesaj: "Tüm veriler yüklendi"
+      };
+
+      // Callback çağır
+      if (typeof window[callbackName] === 'function') {
+        window[callbackName](data);
+      } else {
+        console.error("Callback fonksiyonu bulunamadı:", callbackName);
+      }
+    } catch (e) {
+      console.error("Veri yükleme hatası:", e);
     }
   }
 
-  // Verileri yükle
-  const [ilData, ilceData, mahalleData] = await Promise.all([
-    loadCsv('il'),
-    loadCsv('ilce'),
-    loadCsv('mahalle')
-  ]);
-
-  // Filtreleme
-  const filteredIl = il ? ilData.filter(x => x.ad.toLowerCase() === il.toLowerCase()) : ilData;
-  const filteredIlce = ilce ? ilceData.filter(x => x.ilce.toLowerCase() === ilce.toLowerCase()) : ilceData;
-  const filteredMahalle = mahalle ? mahalleData.filter(x => x.mahalle.toLowerCase() === mahalle.toLowerCase()) : mahalleData;
-
-  // Sokak verisi (mahalle koduna göre parçalı CSV)
-  async function loadSokak(mahalleKod) {
-    if (!mahalleKod) return [];
-    const index = Math.min(Math.floor((parseInt(mahalleKod)-1)/20000)+1, 50);
-    const url = `https://raw.githubusercontent.com/ckoglu/csv-tr-api/main/sokak/sokak${index}.csv`;
-    try {
-      const res = await fetch(url);
-      const text = await res.text();
-      return parseCsv(text).filter(s => sokak ? s.sokak_no === sokak : true);
-    } catch (err) {
-      console.error('Sokak yüklenemedi:', err);
-      return [];
-    }
-  }
-
-  // Mahalle kodu varsa sokakları yükle
-  let sokakData = [];
-  if (filteredMahalle.length) {
-    const codes = filteredMahalle.map(m => m.mahalle_kod);
-    for (let code of codes) {
-      const data = await loadSokak(code);
-      sokakData = sokakData.concat(data);
-    }
-  }
-
-  // JSONP callback
-  const result = {
-    il: filteredIl,
-    ilce: filteredIlce,
-    mahalle: filteredMahalle,
-    sokak: sokakData,
-    timestamp: new Date().toISOString()
-  };
-
-  window[callbackName](result);
-
+  loadData();
 })();
