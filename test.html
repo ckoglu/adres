@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8">
-  <title>JSONP Test</title>
-</head>
-<body>
-  <h1>JSONP Test</h1>
-  <pre id="output"></pre>
+<script>
+(function() {
+  // URL parametrelerini al
+  const params = new URLSearchParams(window.location.search);
+  const callbackName = params.get("callback") || "myCallback";
+  const cmd = params.get("cmd") || "";
 
-  <script>
-    // JSONP callback fonksiyonu
-    function myCallback(data) {
-      document.getElementById("output").textContent = JSON.stringify(data, null, 2);
-    }
-  </script>
+  // Örnek sabit veri (CSV veya başka kaynaklardan üretebilirsin)
+  const data = {
+    cmd: cmd,
+    il: params.get("il") || "",
+    ilce: params.get("ilce") || "",
+    mahalle: params.get("mahalle") || "",
+    sokak: params.get("sokak") || ""
+  };
 
-  <script src="callback.js?cmd=il=adana&ilce=ÇUKUROVA&mahalle=BEYAZEVLER&sokak=80028&callback=myCallback"></script>
-</body>
-</html>
+  // JSONP cevabı
+  document.write(`${callbackName}(${JSON.stringify(data)});`);
+})();
+</script>
