@@ -7,13 +7,12 @@
   const mahalle = urlParams.get('mahalle');
   const sokak = urlParams.get('sokak');
 
-  // CSV verilerinin GitHub URL'leri
+  // CSV URL'leri
   const CSV_URLS = {
     il: 'https://raw.githubusercontent.com/ckoglu/csv-tr-api/refs/heads/main/il.csv',
     ilce: 'https://raw.githubusercontent.com/ckoglu/csv-tr-api/refs/heads/main/ilce.csv',
     mahalle: 'https://raw.githubusercontent.com/ckoglu/csv-tr-api/refs/heads/main/mahalle.csv',
-    // Sokak verisi parçalı, mahalle koduna göre
-    sokak: (mahalleKod) => `https://raw.githubusercontent.com/ckoglu/csv-tr-api/main/sokak/sokak${mahalleKod}.csv`
+    sokak: (index) => `https://raw.githubusercontent.com/ckoglu/csv-tr-api/main/sokak/sokak${index}.csv`
   };
 
   // CSV parse fonksiyonu
@@ -31,15 +30,29 @@
     });
   }
 
-  // Fetch ve callback
+  // Sokak dosyalarını fetch et (örnek: 50 dosya)
+  async function fetchAllSokak() {
+    const sokakData = [];
+    for (let i = 1; i <= 50; i++) {
+      try {
+        const response = await fetch(CSV_URLS.sokak(i));
+        if (!response.ok) continue;
+        const csvText = await response.text();
+        sokakData.push(...parseCsv(csvText));
+      } catch(e) {
+        console.warn(`Sokak dosyası ${i} yüklenemedi:`, e);
+      }
+    }
+    return sokakData;
+  }
+
+  // Veri yükleme ve callback çağırma
   async function loadData() {
     try {
       const ilData = parseCsv(await (await fetch(CSV_URLS.il)).text());
       const ilceData = parseCsv(await (await fetch(CSV_URLS.ilce)).text());
       const mahalleData = parseCsv(await (await fetch(CSV_URLS.mahalle)).text());
-
-      // Sokak verisi (örnek: mahalle koduna göre 1. dosya)
-      const sokakData = parseCsv(await (await fetch(CSV_URLS.sokak(1))).text());
+      const sokakData = await fetchAllSokak();
 
       const data = {
         il, ilce, mahalle, sokak,
@@ -47,13 +60,13 @@
         mesaj: "Tüm veriler yüklendi"
       };
 
-      // Callback çağır
+      // JSONP callback
       if (typeof window[callbackName] === 'function') {
         window[callbackName](data);
       } else {
         console.error("Callback fonksiyonu bulunamadı:", callbackName);
       }
-    } catch (e) {
+    } catch(e) {
       console.error("Veri yükleme hatası:", e);
     }
   }
