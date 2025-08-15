@@ -13,13 +13,18 @@
       modul: "https://ckoglu.github.io/adres/js/modules/"
     };
 
-    // Modül import
+    // 1️⃣ Veri yükleyici modülünü yükle
+    const veriModul = await import(`${window.url.modul}veriYukleyici.js`);
+    if (!veriModul.verileriYukle) throw new Error("veri yükleyici fonksiyonu bulunamadı");
+    await veriModul.verileriYukle(); // CSV dosyalarını yükle
+
+    // 2️⃣ Komut işleyici modülünü yükle
     const { handleAllParams } = await import(`${window.url.modul}komutIsleyici.js`);
 
-    // Komutu çalıştır
+    // 3️⃣ Komutu çalıştır
     const result = await handleAllParams(cmd);
 
-    // JSONP callback olarak döndür
+    // 4️⃣ JSONP callback olarak döndür
     const scriptTag = document.createElement("script");
     scriptTag.textContent = `${callbackName}(${JSON.stringify(result)});`;
     document.body.appendChild(scriptTag);
