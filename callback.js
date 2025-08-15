@@ -7,13 +7,13 @@
 
     if (!cmd) throw new Error("cmd parametresi eksik");
 
-    // Localhost veya GitHub Pages için path tanımı
+    // Doğru modül yolları
     window.url = {
-      helper: "./js/helper/",
-      modul: "./js/modules/"
+      helper: "https://ckoglu.github.io/adres/js/helper/",
+      modul: "https://ckoglu.github.io/adres/js/modules/"
     };
 
-    // Modülleri import et
+    // Modül import
     const { handleAllParams } = await import(`${window.url.modul}komutIsleyici.js`);
 
     // Komutu çalıştır
