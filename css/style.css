@@ -62,6 +62,7 @@ input[type=text]:focus{outline:2px solid var(--primary)}
 .endpoint-buttons {display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;background:var(--secondary-clr);color:var(--text-clr);padding: 6px 20px;border-top-left-radius:13px;border-top-right-radius:13px;min-height:52px;max-height:100px;margin-bottom:3px}
 .endpoint-buttons h4 {font-size:15px;font-weight:500;text-transform: uppercase;color:var(--text-secondary-clr);font-family: sans-serif;}
 .endpoint-buttons .sag-buttons {display:flex;flex-wrap:wrap;align-items:center;}
+.endpoint-buttons .sag-buttons .icon {height: auto!important;}
 .endpoint{background:var(--secondary-clr);color:var(--text-clr);padding:10px 10px 25px 20px;border-bottom-left-radius:13px; border-bottom-right-radius:13px; overflow-x:auto;position:relative;font-size:17px;line-height:1.4em;white-space:pre-wrap;word-break:break-word;font-family:monospace}
 .gorBtn{border:none;border-radius:8px;color:var(--text-clr);font-weight:600;cursor:pointer;font-size:13px;transition:background-color .25s;user-select:none;z-index:10;height:35px;width: 35px;display: flex;}
 .gorBtn:hover{background:var(--primary-clr);color:var(--bg)}
