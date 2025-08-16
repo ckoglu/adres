@@ -62,7 +62,8 @@ function showAuthButtons(url) {
   const h1UserName = document.getElementById("user-name");
   if (h1UserName) {h1UserName.innerText = "Merhaba!";}
   if (!container) return;
-  container.innerHTML = `<button id="loginBtn" class="btn-auth">giriş yap</button><button id="registerBtn" class="btn-auth">kayıt ol</button>`;
+  if (window.innerWidth < 768) {container.innerHTML = `<button id="loginBtn" class="btn-auth">giriş</button><button id="registerBtn" class="btn-auth">kayıt</button>`;} 
+  else {container.innerHTML = `<button id="loginBtn" class="btn-auth">giriş yap</button><button id="registerBtn" class="btn-auth">kayıt ol</button>`;}
   document.getElementById("loginBtn")?.addEventListener("click", () => {window.location.href = `${url.site}${url.repository}login/`;});
   document.getElementById("registerBtn")?.addEventListener("click", () => {window.location.href = `${url.site}${url.repository}signup/`;});
 }
