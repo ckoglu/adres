@@ -5,29 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const repo = pathname.length > 0 ? `/${pathname[0]}/` : '/';
   const { siteURL } = await import(`${location.origin}${repo}js/siteurl.js`);
   url = siteURL();
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const apiQuery = urlParams.get('api');
-  const fetchQuery = urlParams.get('fetch');
-  
-  if (fetchQuery !== null) {return;}
-
-  else if (apiQuery !== null) {
-    document.body.innerHTML = `<pre id="json-output"></pre>`;
-    if ('serviceWorker' in navigator) {
-      try {
-        await navigator.serviceWorker.register(`${location.origin}${repo}sw.js`, {scope: `${repo}`});
-      } catch (e) {
-        console.error('Service Worker kayıt hatası:', e);
-      }
-    }
-    const { fetchAPI } = await import(`${url.modul}apifetch.js`);
-    await fetchAPI(apiQuery, urlParams, url);
-  } 
-
-  else {
-    initializeApp();
-  }
+  initializeApp();
 });
 
 const cmdInput = document.getElementById("cmd");
@@ -114,7 +92,6 @@ window.cmdRun = async function (cmd) {
       return;
     }
 
-    // SADECE GEÇERLİ PARAMETRİK KOMUTLARDA AŞAĞIDAKİLERİ YAP:
     else if (isParametricCmd) {
       headerTitle.style.display = "none";
       const blockElements = komutSonucModul.createNewOutputBlock(cmd);
