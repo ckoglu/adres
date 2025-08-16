@@ -42,10 +42,10 @@ export const htmlData = `
   <h3 data-content="#" class="hover:content">kullanım</h3>
   <p>Sayfadaki komut kutusuna örneklerden birini yazarak veriye ulaşabilirsiniz. Örneğin: <a href="${url.site}${url.repository}?cmd=il=antalya&ilce=alanya" data-ust-title="Antalya ili ve Alanya İlçesi"><code>il=antalya&ilce=alanya</code></a></p>
   <h3 data-content="#" class="hover:content">API</h3>
-  <div class="endpoint"><pre class="json-highlight"><span class="js-function">fetch</span>(<span class="js-string">"https://adres.ckoglu.workers.dev/?api=[CMD]&key=[KEY]"</span>)
-  .<span class="js-function">then</span>(<span class="js-variable">res</span> <span class="js-arrow">=></span> <span class="js-variable">res</span>.<span class="js-method">text</span>())
-  .<span class="js-function">then</span>(<span class="js-variable">data</span> <span class="js-arrow">=></span> {<span class="js-property">document</span>.<span class="js-property">body</span>.<span class="js-property">textContent</span> = <span class="js-variable">data</span>;})
-  .<span class="js-function">catch</span>(<span class="js-variable">err</span> <span class="js-arrow">=></span> <span class="js-console">console</span>.<span class="js-method">error</span>(<span class="js-string">"hata:"</span>, <span class="js-variable">err</span>));</pre></div>
+  <div class="endpoint"><pre class="json-highlight"><span class="json-function">fetch</span>(<span class="json-string">"https://adres.ckoglu.workers.dev/?api=[CMD]&key=[KEY]"</span>)
+  .<span class="json-function">then</span>(<span class="json-variable">res</span> <span class="json-arrow">=></span> <span class="json-variable">res</span>.<span class="json-method">text</span>())
+  .<span class="json-function">then</span>(<span class="json-variable">data</span> <span class="json-arrow">=></span> {<span class="json-property">document</span>.<span class="json-property">body</span>.<span class="json-property">textContent</span> = <span class="json-variable">data</span>;})
+  .<span class="json-function">catch</span>(<span class="json-variable">err</span> <span class="json-arrow">=></span> <span class="json-console">console</span>.<span class="json-method">error</span>(<span class="json-string">"hata:"</span>, <span class="json-variable">err</span>));</pre></div>
   </section>`;
 
 export function gosterInfo(cmdInput) {
