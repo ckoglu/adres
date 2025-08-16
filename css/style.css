@@ -4,7 +4,7 @@ h1,h2,h3{font-weight:600;margin:0}
 p{margin-bottom:1rem}
 a{color:var(--text-clr);text-decoration:underline;cursor:pointer}
 a:focus,a:hover{color:var(--text-clr)}
-code{background-color:var(--secondary-clr);border-radius:3px;font-family: monospace, sans-serif;font-size:.95em;padding: 0 3px}
+code{background-color:var(--secondary-clr);border-radius:3px;font-family: monospace, sans-serif;font-size:.95em;padding: 0 3px;white-space: pre-wrap;word-break: break-all;}
 code span{font-family: monospace, sans-serif;}
 button {text-transform: lowercase;}
 ul{padding-left:1.5rem;margin-bottom:1rem}
