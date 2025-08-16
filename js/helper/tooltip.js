@@ -3,6 +3,7 @@ export function initializeTooltip() {
   let currentTargetEl = null;
 
   const showTooltip = (el) => {
+    if (window.innerWidth < 768) return;
     const tooltipText =
       el.dataset.altTitle ||
       el.dataset.sagTitle ||
