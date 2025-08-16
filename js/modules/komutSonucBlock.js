@@ -22,7 +22,7 @@ export function createNewOutputBlock(cmdText) {
   const block = document.createElement("div");
   block.className = "output-block";
 
-  block.innerHTML = `<p class="cmdText">✅<code>${cmdText}</code> komutu sonuçları: </p><div class="endpoint-buttons"><h4>JSON</h4><div class="sag-buttons"><a class="header-link gorBtn" data-ust-title="kopyala"><div class="icon"><i class="copy"></i></div></a><a href="${url.site}${url.repository}?api=${cmdText}&key=${currentUser?.uid}" target="_blank" class="header-link apiBtn" data-ust-title="api"><div class="icon" data-scale="0.9"><i class="attribution"></i></div></a><a href="${url.site}${url.repository}?fetch=${cmdText}&key=${currentUser?.uid}" target="_blank" class="header-link fetchBtn" data-ust-title="fetch"><div class="icon" data-scale="0.9"><i class="code"></i></div></a></div></div><div class="endpoint"></div><div class="wiki-section"><h3 class="result-il-baslik"></h3><div class="il-wiki"><p class="result-il-metin"></p></div></div>`;
+  block.innerHTML = `<p class="cmdText">✅<code>${cmdText}</code> komutu sonuçları: </p><div class="endpoint-buttons"><h4>JSON</h4><div class="sag-buttons"><a class="header-link gorBtn" data-ust-title="kopyala"><div class="icon"><i class="copy"></i></div></a><a href="https://adres.ckoglu.workers.dev/?api=${cmdText}&key=${currentUser?.uid}" target="_blank" class="header-link fetchBtn" data-ust-title="API"><div class="icon" data-scale="0.9"><i class="code"></i></div></a></div></div><div class="endpoint"></div><div class="wiki-section"><h3 class="result-il-baslik"></h3><div class="il-wiki"><p class="result-il-metin"></p></div></div>`;
   container.prepend(block);
 
   return {
