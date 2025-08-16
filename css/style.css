@@ -98,7 +98,7 @@ input[type=text]:focus{outline:2px solid var(--primary)}
 .popup-cmd-link{display:flex;opacity: 0;visibility: hidden;align-items:center;position:relative;justify-content:center;color:var(--placeholder);--scale:0;border:1px solid transparent;text-align:center;cursor:pointer;border-radius:calc(var(--scale) * 10px);align-items:center;z-index:1}
 .history-item:hover .popup-cmd-link,.popup-cmd-link.show-popup {opacity: 1;visibility: visible;padding:8px 13px;cursor:pointer;--scale:0.85;}
 .popup-menu{display:none;background:var(--primary-clr);border:1px solid var(--border);border-radius:9px;padding:7px;flex-direction:column;box-shadow:0 8px 16px rgba(0,0,0,.1)}
-.popup-menu-item{display:flex;align-items:center;padding:0;font-size: 15px;color:var(--text-clr);text-decoration:none;white-space:nowrap;border-radius: 7px;}
+.popup-menu-item{display:flex;align-items:center;padding:0;color:var(--text-clr);text-decoration:none;white-space:nowrap;border-radius: 7px;}
 .popup-menu .delete {color:var(--red)}
 .popup-menu-item:hover{background:var(--secondary-hover-clr)}
 .popup-menu-item .text{line-height: 1;padding-right:10px}
