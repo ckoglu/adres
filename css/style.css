@@ -196,6 +196,7 @@ input[type=text]:focus{outline:2px solid var(--primary)}
   .mainContentVerify {padding-top: 200px;}
   .menu-list{padding-top:37px}
   .history-item .popup-cmd-link {opacity: 1;visibility: visible;padding:8px 13px;cursor:pointer;--scale:0.85;}
+  .json-highlight {word-break: break-all;white-space: pre-line;}
 }
 .sidebar.collapsed .text{display:none}
 .sidebar.collapsed .sidebar-item{justify-content:center}
