@@ -35,16 +35,9 @@ window.cmdRun = async function (cmd) {
 
   // info komutu
   if (cmd === "info") {
+    headerTitle.style.display = "none";
     const infoHelper = await import(`${url.helper}info.js`);
     infoHelper.gosterInfo(cmdInput);
-    if (userName) {
-      userName.scrollIntoView({ behavior: "smooth", block: "start" });
-      if (typeof userName.focus === "function") {
-        userName.setAttribute("tabindex", "-1");
-        userName.focus();
-      }
-    }
-    headerTitle.style.display = "none";
     return;
   }
 
