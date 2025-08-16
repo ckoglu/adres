@@ -92,8 +92,7 @@ export async function renderHistory(uid) {
           <div class="popup-cmd-link" onclick="togglePopupCmd(this)">
             <i class="more-alt"></i>
             <div class="popup-menu">
-              <a class="popup-menu-item" target="_blank" href="${url.site}${url.repository}?api=${item.cmd}&key=${uid}"><div class="icon" data-scale="0.9"><i class="attribution"></i></div><span class="text">json</span></a>
-              <a class="popup-menu-item" target="_blank" href="${url.site}${url.repository}?fetch=${item.cmd}&key=${uid}"><div class="icon" data-scale="0.9"><i class="code"></i></div><span class="text">fetch</span></a>
+              <a class="popup-menu-item" target="_blank" href="https://adres.ckoglu.workers.dev/?api=${item.cmd}&key=${uid}"><div class="icon" data-scale="0.9"><i class="code"></i></div><span class="text">API</span></a>
               <a class="popup-menu-item" onclick="shareHistoryCommand('${item.cmd.replace(/'/g, "\\'")}')"><div class="icon" data-scale="0.8"><i class="share"></i></div><span class="text">paylaş</span></a>
               <a class="popup-menu-item delete" onclick="deleteHistoryCommand('${item.cmd.replace(/'/g, "\\'")}')"><div class="icon"><i class="trash"></i></div><span class="text">sil</span></a>
             </div>
