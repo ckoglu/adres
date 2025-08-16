@@ -3,7 +3,7 @@ export const htmlData = `
   <h2>hakkında</h2>
   <p>Bu proje, Türkiye’nin resmi idari birimlerini (il, ilçe, mahalle, köy, belde, sokak) açık veri yaklaşımıyla sunan, tamamen istemci tarafında çalışan bir JSON API arayüzüdür. Veriler <a href="https://github.com/ckoglu/csv-tr-api" target="_blank" class="hreflink" rel="noopener noreferrer">GitHub</a>’daki <code>CSV</code> dosyalarından alınır ve JavaScript ile işlenir. Hızlı, sade, okunabilir bir yapıya sahiptir, arka uç gerektirmez. Kaynaklar TÜİK, NVI, OpenStreetMap, Wikipedia’dır. Açık kaynaklıdır ve MIT lisansı altındadır.</p>
 
-  <h3 data-content="#" class="hover:content">Komutlar</h3>
+  <h3 data-content="#" class="hover:content">komutlar</h3>
   <div>
     <a href="${url.site}${url.repository}?cmd=il" data-ust-title="Tüm illeri JSON olarak döner"><code>il</code></a>
     <a href="${url.site}${url.repository}?cmd=il={adı,no}" data-ust-title="Belirli bir ili sorgular"><code>il={adı,no}</code></a>
