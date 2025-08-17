@@ -2,6 +2,6 @@ body {background-color:var(--primary-clr); color:var(--text-clr); min-height:100
 .error-container {max-width:600px; margin:0 auto;}
 .error-code {font-size:23px; font-weight:bold; color:var(--red); margin-bottom:15px; line-height:1;}
 .error-message {margin-bottom:30px; color:var(--text-secondary-clr);}
-.error-description {margin-bottom:40px;color: var(--text-secondary-clr);}
+.error-description {margin:auto;margin-bottom:40px;color: var(--text-secondary-clr);max-width: 50%;}
 .home-link {display:inline-block; padding: 8px 11px; background-color:var(--blue); color:var(--text-clr); text-decoration:none; border-radius:7px; transition:background-color 0.3s ease;}
 .home-link:hover {background-color:var(--blue-hover);}
