@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Adres API - Sayfa Bulunamadı</title>
+  <meta name="description" content="Türkiye il, ilçe, mahalle, köy, belde JSON verileri. API komutları ve sorgulama sistemi.">
+  <meta name="keywords" content="adres, api, il, ilçe, mahalle, köy, belde, json">
+  <meta name="author" content="ckoglu">
+  <link rel="stylesheet" href="css/loading.css" />
+  <script src="./js/redirect/noflash.js" defer></script>
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f5fa.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f5fa.svg" type="image/x-icon">
+  <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1e1e1e" media="(prefers-color-scheme: dark)">
+  <link rel="preload" href="css/style.css" as="style">
+  <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+        /* Additional styles specific to the 404 page */
+        body {
+            background-color: var(--primary-clr);
+            color: var(--text-clr);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            visibility: visible;
+        }
+
+        .error-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .error-code {
+            font-size: 6rem;
+            font-weight: bold;
+            color: var(--red);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .error-message {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary-clr);
+        }
+
+        .error-description {
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .home-link {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-link:hover {
+            background-color: var(--blue-hover);
+        }
+
+        .theme-selector {
+            margin-top: 3rem;
+        }
+
+        .theme-btn {
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border: 1px solid var(--border-clr);
+            background: var(--secondary-clr);
+            color: var(--text-clr);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-btn:hover {
+            background: var(--secondary-hover-clr);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <h1 class="error-message">Page Not Found</h1>
+        <p class="error-description">
+            The page you are looking for might have been removed, had its name changed, 
+            or is temporarily unavailable.
+        </p>
+        <a href="/" class="home-link">Return to Homepage</a>
+        
+        <div class="theme-selector">
+            <p>Change Theme:</p>
+            <button class="theme-btn" onclick="setTheme('dark-mode')">Dark</button>
+            <button class="theme-btn" onclick="setTheme('light')">Light</button>
+            <button class="theme-btn" onclick="setTheme('dracula')">Dracula</button>
+            <button class="theme-btn" onclick="setTheme('cyberpunk')">Cyberpunk</button>
+        </div>
+    </div>
+
+    <script>
+        // Theme switcher
+        function setTheme(themeName) {
+            document.documentElement.setAttribute('data-theme', themeName);
+            localStorage.setItem('theme', themeName);
+        }
+
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme') || 'dark-mode';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        
+        // Remove loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            document.documentElement.style.setProperty('--before-display', 'none');
+        });
+    </script>
+</body>
+</html>
