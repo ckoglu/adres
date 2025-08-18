@@ -1,7 +1,7 @@
 body {background-color:var(--primary-clr); color:var(--text-clr); min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:30px; visibility:visible;}
 .error-container {max-width:600px; margin:0 auto;}
 .error-code {font-size:60px; font-weight:bold; color:var(--red); margin-bottom:15px; line-height:1;}
-.error-message {margin-bottom:30px; color:var(--text-secondary-clr);}
+.error-message {margin-bottom:30px; color:var(--text-secondary-clr);font-size: 22px;}
 .error-description {margin:auto;margin-bottom:40px;color: var(--primary-clr);max-width: 75%;}
 .home-link {display:inline-block; padding: 8px 11px; background-color:var(--blue); color:var(--text-clr); text-decoration:none; border-radius:7px; transition:background-color 0.3s ease;}
 .home-link:hover {background-color:var(--blue-hover);}
