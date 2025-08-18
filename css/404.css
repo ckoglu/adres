@@ -4,4 +4,4 @@ body {background-color:var(--primary-clr); color:var(--text-clr); min-height:100
 .error-message {margin-bottom:30px; color:var(--text-secondary-clr);font-size: 22px;}
 .error-description {margin:auto;margin-bottom:40px;color: var(--text-clr);max-width: 75%;}
 .home-link {display:inline-block; padding: 8px 11px; background-color:var(--blue); color:var(--primary-clr); text-decoration:none; border-radius:7px; transition:background-color 0.3s ease;}
-.home-link:hover {background-color:var(--blue-hover);}
+.home-link:hover {background-color:var(--blue-hover); color:var(--primary-clr); }
